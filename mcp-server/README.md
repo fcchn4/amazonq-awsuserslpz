@@ -43,12 +43,18 @@ npx @modelcontextprotocol/inspector uvx mcp-server
 npx @modelcontextprotocol/inspector uvx .
 ```
 
-### 3. Gestión del proyecto
+### 3. Retomar el proyecto
 
 ```bash
-# Actualizar dependencias
-uv lock --upgrade
+# Si no existe el entorno virtual
+uv venv
 
-# Sincronizar entorno con lockfile
+# Activar el entorno virtual
+source .venv/bin/activate
+
+# Sincronizar entorno
 uv sync
+
+# Si es necesario volver a instalar las dependencias
+uv add "mcp[cli]" httpx
 ```
