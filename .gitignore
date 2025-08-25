@@ -4,3 +4,10 @@
 # Repositorio de ejemplos clonado
 amazonq/blog-ejemplos/
 amazonq/groovy-project
+
+# UV/Python - mcp-server
+mcp-server/.venv/
+mcp-server/__pycache__/
+mcp-server/*.pyc
+mcp-server/uv.lock
+mcp-server/.python-version
