@@ -15,10 +15,13 @@ Repositorio de demostración para charla técnica sobre Amazon Q, mostrando capa
 |       |-- project-status.md
 |       `-- template-generator.md
 |-- amazonq/
-|   |-- blog-ejemplos/
-|   |-- groovy-project/
+|   `-- README.md
+|-- mcp-server/
+|   |-- poc.py
+|   |-- pyproject.toml
 |   `-- README.md
 |-- .gitignore
+|-- LICENSE.md
 `-- README.md
 ```
 
