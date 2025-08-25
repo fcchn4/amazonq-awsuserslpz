@@ -5,7 +5,7 @@ Repositorio de demostración para charla técnica sobre Amazon Q, mostrando capa
 ## Estructura del Proyecto
 
 ```
-/home/freddy/Fcch/dev/talks-sample-code/
+/home/freddy/Fcch/dev/amazonq-awsuserslpz/
 |-- .amazonq/
 |   `-- rules/
 |       |-- auto-readme-updater.md
@@ -26,17 +26,45 @@ Repositorio de demostración para charla técnica sobre Amazon Q, mostrando capa
 
 ### [amazonq](./amazonq/)
 
-Plantillas, ejemplos y proyectos generados para Amazon Q. Incluye +150 ejemplos de código clonados, proyecto Groovy funcional y documentación completa de capacidades.
+Plantillas, ejemplos y proyectos generados para Amazon Q. Incluye documentación completa de capacidades y casos de uso prácticos.
 
 **Contenido**:
 
-- **blog-ejemplos/**: +150 ejemplos de código Java, Spring, Docker
-- **groovy-project/**: Proyecto funcional generado desde template YAML
 - **README.md**: Documentación detallada con prompts y casos de uso
+- **Ejemplos de análisis**: NginxLoadBalancer, SpringBoot, JavaLogging
+- **Templates de scaffolding**: Groovy, Java, Python
+
+### [mcp-server](./mcp-server/)
+
+Servidor MCP (Model Context Protocol) funcional que demuestra integración con API externa de Star Wars.
+
+**Características**:
+
+- **FastMCP**: Framework para servidores MCP
+- **API Integration**: Conexión a SWAPI (Star Wars API)
+- **Tools implementadas**: connection, get_api_url, get_people
+- **Manejo asíncrono**: Funciones async para llamadas HTTP
+- **Error handling**: Validación y manejo de errores
+
+**Tecnologías**:
+
+- Python 3.12+ con UV
+- FastMCP + httpx
+- Inspector MCP para testing
 
 **Métricas actuales**:
 
 - 6 reglas personalizadas implementadas
 - 8 prompts efectivos documentados
-- 1 proyecto ejecutable generado
-- 3 ejemplos seleccionados para análisis
+- 1 servidor MCP funcional
+- 3 tools MCP implementadas
+
+## Referencias
+
+1. [Model Context Protocol - Server Quickstart](https://modelcontextprotocol.io/quickstart/server)
+2. [DrawIO MCP Server - Community Example](https://mcp.so/server/drawio-mcp-server/lgazo?tab=comments)
+3. [DrawIO MCP Server - Implementation Example](https://github.com/lgazo/drawio-mcp-server/blob/main/docs/examples/example1.md)
+4. [Amazon Q Developer - Official Documentation](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/)
+5. [Amazon Q Developer - IDE Integration Guide](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/ide-integration.html)
+6. [Amazon Q Developer - Code Generation Best Practices](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/code-generation.html)
+7. [Amazon Q Developer - Security Scanning](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/security-scans.html)

@@ -1,46 +1,63 @@
-# MCP Server - Desarrollo Local con Python
+# MCP Server - Star Wars API Demo
 
-Comandos UV para crear el espacio de trabajo de desarrollo para un MCP server local.
+Servidor MCP funcional que demuestra integración con API externa usando FastMCP y httpx.
 
-## Requisitos Importantes
+## Descripción del Proyecto
 
-- NodeJS 22 o superior.
-- Python 3.12 o superior.
+Este proyecto implementa un servidor MCP (Model Context Protocol) que se conecta a la API de Star Wars (SWAPI) para obtener información de personajes. Demuestra:
+
+- **Servidor MCP funcional** con FastMCP
+- **Integración con API externa** (https://www.swapi.tech/)
+- **Manejo de errores HTTP** y validación
+- **Funciones asíncronas** para llamadas a API
+- **Tools disponibles** para inspección
+
+## Tools Implementadas
+
+### 1. `connection()`
+- **Descripción**: Test básico de conexión al servidor MCP
+- **Retorna**: Mensaje de confirmación "Github MCP server is running!"
+
+### 2. `get_api_url()`
+- **Descripción**: Obtiene la URL base de la API
+- **Retorna**: URL de la API de Star Wars (https://www.swapi.tech/api/people)
+
+### 3. `get_people(people_number: int)`
+- **Descripción**: Obtiene información de un personaje específico de Star Wars
+- **Parámetro**: `people_number` - ID del personaje (ej: 1 para Luke Skywalker)
+- **Retorna**: JSON con datos del personaje o mensaje de error
+- **Ejemplo**: `get_people(1)` retorna información de Luke Skywalker
+
+## Requisitos
+
+- **NodeJS 22+** para el inspector MCP
+- **Python 3.12+** para el servidor
+- **UV** para gestión de dependencias
 
 ## Comandos UV
 
-### 1. Crear proyecto MCP y Configurar entorno virtual
+### 1. Configurar proyecto
 
 ```bash
-# Crear y/o ingresar a la carpeta mcp-server
-mkdir mcp-server
+# Navegar al directorio
 cd mcp-server
 
-# Dentro de la carpeta mcp-server
-uv init
-
-# Crear entorno virtual y activar
+# Crear entorno virtual
 uv venv
 source .venv/bin/activate
 
-# Instalar dependencias importantes
-uv add "mcp[cli]" httpx
-
-# Crear el archivo mcp.py
-touch mcp.py
+# Instalar dependencias
+uv sync
 ```
 
 ### 2. Ejecutar servidor MCP
 
 ```bash
-# Ejecutar servidor local
-npx @modelcontextprotocol/inspector python mcp.py
+# Ejecutar con inspector MCP
+npx @modelcontextprotocol/inspector python poc.py
 
-# Otra forma de ejecución
-npx @modelcontextprotocol/inspector uvx mcp-server
-
-# Otra forma
-npx @modelcontextprotocol/inspector uvx .
+# Ejecutar directamente
+uv run python poc.py
 ```
 
 ### 3. Retomar el proyecto
@@ -58,3 +75,32 @@ uv sync
 # Si es necesario volver a instalar las dependencias
 uv add "mcp[cli]" httpx
 ```
+
+## Uso del Inspector MCP
+
+1. Ejecutar: `npx @modelcontextprotocol/inspector python poc.py`
+2. Abrir navegador en la URL mostrada
+3. Probar las tools disponibles:
+   - `connection` - Test de conexión
+   - `get_api_url` - Ver URL de la API
+   - `get_people` - Obtener personaje (usar números 1-83)
+
+## Ejemplos de Uso
+
+```bash
+# Obtener Luke Skywalker (ID: 1)
+get_people(1)
+
+# Obtener Darth Vader (ID: 4)
+get_people(4)
+
+# Obtener Leia Organa (ID: 5)
+get_people(5)
+```
+
+## Estructura del Código
+
+- **FastMCP**: Framework para crear servidores MCP
+- **httpx**: Cliente HTTP asíncrono para llamadas a API
+- **Error handling**: Manejo de errores HTTP y de red
+- **Type hints**: Tipado completo para mejor desarrollo
