@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: groovy-hello-world
+  description: "Template para proyecto Groovy 4.0.26 con Gradle 8.13"
+spec:
+  parameters:
+    - name: PROJECT_NAME
+      description: "Nombre del proyecto"
+      value: "groovy-hello-world"
+    - name: PACKAGE_NAME
+      description: "Nombre del paquete"
+      value: "com.example.groovy"
+  
+  files:
+    - path: "build.gradle"
+      content: |
+        plugins {
+            id 'groovy'
+            id 'application'
+            id 'de.undercouch.download' version '5.4.0'
+            id 'com.netflix.nebula.ospackage' version '11.8.0'
+        }
+        
+        group = '${PACKAGE_NAME}'
+        version = '1.0.0'
+        
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(17)
+            }
+        }
+        
+        repositories {
+            mavenCentral()
+        }
+        
+        dependencies {
+            implementation 'org.apache.groovy:groovy:4.0.26'
+            testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
+        }
+        
+        application {
+            mainClass = '${PACKAGE_NAME}.HelloWorld'
+        }
+        
+        tasks.named('test') {
+            useJUnitPlatform()
+        }
+
+    - path: "gradle/wrapper/gradle-wrapper.properties"
+      content: |
+        distributionBase=GRADLE_USER_HOME
+        distributionPath=wrapper/dists
+        distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip
+        networkTimeout=10000
+        validateDistributionUrl=true
+        zipStoreBase=GRADLE_USER_HOME
+        zipStorePath=wrapper/dists
+
+    - path: "src/main/groovy/${PACKAGE_NAME_PATH}/HelloWorld.groovy"
+      content: |
+        package ${PACKAGE_NAME}
+        
+        class HelloWorld {
+            static void main(String[] args) {
+                println "¡Hola Mundo desde Groovy 4.0.26!"
+                println "Gradle version: 8.13"
+                println "Plugins cargados: de.undercouch.download, nebula.ospackage"
+            }
+        }
+
+    - path: "src/test/groovy/${PACKAGE_NAME_PATH}/HelloWorldSpec.groovy"
+      content: |
+        package ${PACKAGE_NAME}
+        
+        import spock.lang.Specification
+        
+        class HelloWorldSpec extends Specification {
+            def "should print hello world message"() {
+                given:
+                def output = new ByteArrayOutputStream()
+                System.out = new PrintStream(output)
+                
+                when:
+                HelloWorld.main()
+                
+                then:
+                output.toString().contains("¡Hola Mundo desde Groovy")
+            }
+        }
+
+    - path: "gradlew"
+      executable: true
+      content: |
+        #!/bin/sh
+        exec gradle "$@"
+
+    - path: "settings.gradle"
+      content: |
+        rootProject.name = '${PROJECT_NAME}'
