@@ -11,3 +11,5 @@ mcp-server/__pycache__/
 mcp-server/*.pyc
 mcp-server/uv.lock
 mcp-server/.python-version
+mcp-server/*.egg-info
+mcp-server/build/

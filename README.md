@@ -5,7 +5,7 @@ Repositorio de demostración para charla técnica sobre Amazon Q, mostrando capa
 ## Estructura del Proyecto
 
 ```
-/home/freddy/Fcch/dev/amazonq-awsuserslpz/
+amazonq-awsuserslpz/
 |-- .amazonq/
 |   `-- rules/
 |       |-- auto-readme-updater.md
